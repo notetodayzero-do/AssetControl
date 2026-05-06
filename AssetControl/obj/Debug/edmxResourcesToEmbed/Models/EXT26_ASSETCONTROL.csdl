@@ -1,0 +1,818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXT26_ASSETCONTROLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ext26_assetcontrol_approve">
+    <Key>
+      <PropertyRef Name="id_approve" />
+    </Key>
+    <Property Name="id_approve" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_computer_tran" Type="Int32" Nullable="false" />
+    <Property Name="approve_ind" Type="Int32" Nullable="false" />
+    <Property Name="approve_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="approved_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_approve_status" Relationship="Self.FK__ext26_ass__appro__0B91BA14" FromRole="ext26_assetcontrol_approve" ToRole="ext26_assetcontrol_approve_status" />
+    <NavigationProperty Name="ext26_assetcontrol_approve_log" Relationship="Self.FK__ext26_ass__id_ap__0F624AF8" FromRole="ext26_assetcontrol_approve" ToRole="ext26_assetcontrol_approve_log" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran" Relationship="Self.FK__ext26_ass__id_co__0A9D95DB" FromRole="ext26_assetcontrol_approve" ToRole="ext26_assetcontrol_computer_tran" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_approve_log">
+    <Key>
+      <PropertyRef Name="id_approve_log" />
+    </Key>
+    <Property Name="id_approve_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_approve" Type="Int32" Nullable="false" />
+    <Property Name="emp_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_computer_tran" Type="Int32" Nullable="false" />
+    <Property Name="approve_ind" Type="Int32" Nullable="false" />
+    <Property Name="approve_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="approved_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="approve_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_approve" Relationship="Self.FK__ext26_ass__id_ap__0F624AF8" FromRole="ext26_assetcontrol_approve_log" ToRole="ext26_assetcontrol_approve" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_approve_status">
+    <Key>
+      <PropertyRef Name="id_approve_status" />
+    </Key>
+    <Property Name="id_approve_status" Type="Int32" Nullable="false" />
+    <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_approve" Relationship="Self.FK__ext26_ass__appro__0B91BA14" FromRole="ext26_assetcontrol_approve_status" ToRole="ext26_assetcontrol_approve" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset">
+    <Key>
+      <PropertyRef Name="id_asset" />
+    </Key>
+    <Property Name="id_asset" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="asset_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="serial_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_com_spec" Type="Int32" Nullable="false" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_image" Relationship="Self.FK__ext26_ass__id_as__1332DBDC" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_asset_image" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_borrow" Relationship="Self.FK__ext26_ass__id_as__6D0D32F4" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_asset_borrow" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_owner" Relationship="Self.FK__ext26_ass__id_as__778AC167" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_asset_owner" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran" Relationship="Self.FK__ext26_ass__id_as__7F2BE32F" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_computer_tran" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_spec" Relationship="Self.FK__ext26_ass__id_co__619B8048" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_computer_spec" />
+    <NavigationProperty Name="ext26_assetcontrol_status" Relationship="Self.FK__ext26_ass__id_st__628FA481" FromRole="ext26_assetcontrol_asset" ToRole="ext26_assetcontrol_status" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset_borrow">
+    <Key>
+      <PropertyRef Name="id_asset_borrow" />
+    </Key>
+    <Property Name="id_asset_borrow" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="borrow_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="return_date" Type="DateTime" Precision="3" />
+    <Property Name="borrow_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_as__6D0D32F4" FromRole="ext26_assetcontrol_asset_borrow" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_borrow_log" Relationship="Self.FK__ext26_ass__id_as__73BA3083" FromRole="ext26_assetcontrol_asset_borrow" ToRole="ext26_assetcontrol_asset_borrow_log" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__id_us__6E01572D" FromRole="ext26_assetcontrol_asset_borrow" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset_borrow_log">
+    <Key>
+      <PropertyRef Name="id_asset_borrow_log" />
+    </Key>
+    <Property Name="id_asset_borrow_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset_borrow" Type="Int32" Nullable="false" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="borrow_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="return_date" Type="DateTime" Precision="3" />
+    <Property Name="borrow_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_borrow" Relationship="Self.FK__ext26_ass__id_as__73BA3083" FromRole="ext26_assetcontrol_asset_borrow_log" ToRole="ext26_assetcontrol_asset_borrow" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset_image">
+    <Key>
+      <PropertyRef Name="id_image" />
+    </Key>
+    <Property Name="id_image" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="image_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image_path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="image_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_as__1332DBDC" FromRole="ext26_assetcontrol_asset_image" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__id_us__14270015" FromRole="ext26_assetcontrol_asset_image" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset_log">
+    <Key>
+      <PropertyRef Name="id_asset_log" />
+    </Key>
+    <Property Name="id_asset_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="asset_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="serial_number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="id_com_spec" Type="Int32" Nullable="false" />
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="emp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_spec" Relationship="Self.FK__ext26_ass__id_co__66603565" FromRole="ext26_assetcontrol_asset_log" ToRole="ext26_assetcontrol_computer_spec" />
+    <NavigationProperty Name="ext26_assetcontrol_status" Relationship="Self.FK__ext26_ass__id_st__6754599E" FromRole="ext26_assetcontrol_asset_log" ToRole="ext26_assetcontrol_status" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_asset_owner">
+    <Key>
+      <PropertyRef Name="id_owner" />
+    </Key>
+    <Property Name="id_owner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_as__778AC167" FromRole="ext26_assetcontrol_asset_owner" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__id_us__787EE5A0" FromRole="ext26_assetcontrol_asset_owner" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_borrow_status">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_computer_spec">
+    <Key>
+      <PropertyRef Name="id_com_spec" />
+    </Key>
+    <Property Name="id_com_spec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cpu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gpu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="memory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="disk_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="os" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_co__619B8048" FromRole="ext26_assetcontrol_computer_spec" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_log" Relationship="Self.FK__ext26_ass__id_co__66603565" FromRole="ext26_assetcontrol_computer_spec" ToRole="ext26_assetcontrol_asset_log" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_computer_tran">
+    <Key>
+      <PropertyRef Name="id_computer_tran" />
+    </Key>
+    <Property Name="id_computer_tran" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_asset" Type="Int32" Nullable="false" />
+    <Property Name="id_tran_status" Type="Int32" Nullable="false" />
+    <Property Name="old_dept_id" Type="Int32" />
+    <Property Name="new_dept_id" Type="Int32" />
+    <Property Name="old_user_id" Type="Int32" />
+    <Property Name="new_user_id" Type="Int32" />
+    <Property Name="tran_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_approve" Relationship="Self.FK__ext26_ass__id_co__0A9D95DB" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_approve" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_as__7F2BE32F" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_tran_status" Relationship="Self.FK__ext26_ass__id_tr__03F0984C" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_tran_status" />
+    <NavigationProperty Name="ext26_assetcontrol_department" Relationship="Self.FK__ext26_ass__new_d__01142BA1" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_department" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__new_u__02FC7413" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_user" />
+    <NavigationProperty Name="ext26_assetcontrol_department1" Relationship="Self.FK__ext26_ass__old_d__00200768" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_department" />
+    <NavigationProperty Name="ext26_assetcontrol_user1" Relationship="Self.FK__ext26_ass__old_u__02084FDA" FromRole="ext26_assetcontrol_computer_tran" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_department">
+    <Key>
+      <PropertyRef Name="id_dept" />
+    </Key>
+    <Property Name="id_dept" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="code_dept" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dept_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran" Relationship="Self.FK__ext26_ass__new_d__01142BA1" FromRole="ext26_assetcontrol_department" ToRole="ext26_assetcontrol_computer_tran" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran1" Relationship="Self.FK__ext26_ass__old_d__00200768" FromRole="ext26_assetcontrol_department" ToRole="ext26_assetcontrol_computer_tran" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_hardware">
+    <Key>
+      <PropertyRef Name="id_hardware" />
+    </Key>
+    <Property Name="id_hardware" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="name_hardware" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="detail_hardware" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="total_qty" Type="Int32" Nullable="false" />
+    <Property Name="public_total_qty" Type="Int32" Nullable="false" />
+    <Property Name="public_all" Type="Boolean" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware_log" Relationship="Self.FK__ext26_ass__id_ha__5070F446" FromRole="ext26_assetcontrol_hardware" ToRole="ext26_assetcontrol_hardware_log" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware_borrow" Relationship="Self.FK__ext26_ass__id_ha__5441852A" FromRole="ext26_assetcontrol_hardware" ToRole="ext26_assetcontrol_hardware_borrow" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__id_us__4CA06362" FromRole="ext26_assetcontrol_hardware" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_hardware_borrow">
+    <Key>
+      <PropertyRef Name="id_borrow" />
+    </Key>
+    <Property Name="id_borrow" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_hardware" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="borrow_qty" Type="Int32" Nullable="false" />
+    <Property Name="borrow_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="return_date" Type="DateTime" Precision="3" />
+    <Property Name="borrow_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware" Relationship="Self.FK__ext26_ass__id_ha__5441852A" FromRole="ext26_assetcontrol_hardware_borrow" ToRole="ext26_assetcontrol_hardware" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware_borrow_log" Relationship="Self.FK__ext26_ass__id_bo__59063A47" FromRole="ext26_assetcontrol_hardware_borrow" ToRole="ext26_assetcontrol_hardware_borrow_log" />
+    <NavigationProperty Name="ext26_assetcontrol_user" Relationship="Self.FK__ext26_ass__id_us__5535A963" FromRole="ext26_assetcontrol_hardware_borrow" ToRole="ext26_assetcontrol_user" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_hardware_borrow_log">
+    <Key>
+      <PropertyRef Name="id_borrow_log" />
+    </Key>
+    <Property Name="id_borrow_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_borrow" Type="Int32" Nullable="false" />
+    <Property Name="id_hardware" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="borrow_qty" Type="Int32" Nullable="false" />
+    <Property Name="borrow_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="due_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="return_date" Type="DateTime" Precision="3" />
+    <Property Name="borrow_status" Type="Int32" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware_borrow" Relationship="Self.FK__ext26_ass__id_bo__59063A47" FromRole="ext26_assetcontrol_hardware_borrow_log" ToRole="ext26_assetcontrol_hardware_borrow" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_hardware_log">
+    <Key>
+      <PropertyRef Name="id_hardware_log" />
+    </Key>
+    <Property Name="id_hardware_log" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_hardware" Type="Int32" Nullable="false" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="name_hardware" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="detail_hardware" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="total_qty" Type="Int32" Nullable="false" />
+    <Property Name="public_total_qty" Type="Int32" Nullable="false" />
+    <Property Name="public_all" Type="Boolean" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware" Relationship="Self.FK__ext26_ass__id_ha__5070F446" FromRole="ext26_assetcontrol_hardware_log" ToRole="ext26_assetcontrol_hardware" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_role">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_software">
+    <Key>
+      <PropertyRef Name="id_software" />
+    </Key>
+    <Property Name="id_software" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name_software" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="license" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="detail_software" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="url_software" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_status">
+    <Key>
+      <PropertyRef Name="id_status" />
+    </Key>
+    <Property Name="id_status" Type="Int32" Nullable="false" />
+    <Property Name="status_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_asset" Relationship="Self.FK__ext26_ass__id_st__628FA481" FromRole="ext26_assetcontrol_status" ToRole="ext26_assetcontrol_asset" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_log" Relationship="Self.FK__ext26_ass__id_st__6754599E" FromRole="ext26_assetcontrol_status" ToRole="ext26_assetcontrol_asset_log" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_tran_status">
+    <Key>
+      <PropertyRef Name="id_tran_status" />
+    </Key>
+    <Property Name="id_tran_status" Type="Int32" Nullable="false" />
+    <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran" Relationship="Self.FK__ext26_ass__id_tr__03F0984C" FromRole="ext26_assetcontrol_tran_status" ToRole="ext26_assetcontrol_computer_tran" />
+  </EntityType>
+  <EntityType Name="ext26_assetcontrol_user">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_emp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="update_date" Type="DateTime" Precision="3" />
+    <Property Name="cancel_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cancel_date" Type="DateTime" Precision="3" />
+    <Property Name="is_active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_borrow" Relationship="Self.FK__ext26_ass__id_us__6E01572D" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_asset_borrow" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_image" Relationship="Self.FK__ext26_ass__id_us__14270015" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_asset_image" />
+    <NavigationProperty Name="ext26_assetcontrol_asset_owner" Relationship="Self.FK__ext26_ass__id_us__787EE5A0" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_asset_owner" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran" Relationship="Self.FK__ext26_ass__new_u__02FC7413" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_computer_tran" />
+    <NavigationProperty Name="ext26_assetcontrol_computer_tran1" Relationship="Self.FK__ext26_ass__old_u__02084FDA" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_computer_tran" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware" Relationship="Self.FK__ext26_ass__id_us__4CA06362" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_hardware" />
+    <NavigationProperty Name="ext26_assetcontrol_hardware_borrow" Relationship="Self.FK__ext26_ass__id_us__5535A963" FromRole="ext26_assetcontrol_user" ToRole="ext26_assetcontrol_hardware_borrow" />
+  </EntityType>
+  <Association Name="FK__ext26_ass__appro__0B91BA14">
+    <End Role="ext26_assetcontrol_approve_status" Type="Self.ext26_assetcontrol_approve_status" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_approve" Type="Self.ext26_assetcontrol_approve" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_approve_status">
+        <PropertyRef Name="id_approve_status" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_approve">
+        <PropertyRef Name="approve_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_ap__0F624AF8">
+    <End Role="ext26_assetcontrol_approve" Type="Self.ext26_assetcontrol_approve" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_approve_log" Type="Self.ext26_assetcontrol_approve_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_approve">
+        <PropertyRef Name="id_approve" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_approve_log">
+        <PropertyRef Name="id_approve" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_co__0A9D95DB">
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_approve" Type="Self.ext26_assetcontrol_approve" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="id_computer_tran" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_approve">
+        <PropertyRef Name="id_computer_tran" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_as__1332DBDC">
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_image" Type="Self.ext26_assetcontrol_asset_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_asset" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_image">
+        <PropertyRef Name="id_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_as__6D0D32F4">
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_borrow" Type="Self.ext26_assetcontrol_asset_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_asset" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_borrow">
+        <PropertyRef Name="id_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_as__778AC167">
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_owner" Type="Self.ext26_assetcontrol_asset_owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_asset" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_owner">
+        <PropertyRef Name="id_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_as__7F2BE32F">
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_asset" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="id_asset" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_co__619B8048">
+    <End Role="ext26_assetcontrol_computer_spec" Type="Self.ext26_assetcontrol_computer_spec" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_computer_spec">
+        <PropertyRef Name="id_com_spec" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_com_spec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_st__628FA481">
+    <End Role="ext26_assetcontrol_status" Type="Self.ext26_assetcontrol_status" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset" Type="Self.ext26_assetcontrol_asset" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_status">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_as__73BA3083">
+    <End Role="ext26_assetcontrol_asset_borrow" Type="Self.ext26_assetcontrol_asset_borrow" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_borrow_log" Type="Self.ext26_assetcontrol_asset_borrow_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_asset_borrow">
+        <PropertyRef Name="id_asset_borrow" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_borrow_log">
+        <PropertyRef Name="id_asset_borrow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_us__6E01572D">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_borrow" Type="Self.ext26_assetcontrol_asset_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_borrow">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_us__14270015">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_image" Type="Self.ext26_assetcontrol_asset_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_image">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_co__66603565">
+    <End Role="ext26_assetcontrol_computer_spec" Type="Self.ext26_assetcontrol_computer_spec" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_log" Type="Self.ext26_assetcontrol_asset_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_computer_spec">
+        <PropertyRef Name="id_com_spec" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_log">
+        <PropertyRef Name="id_com_spec" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_st__6754599E">
+    <End Role="ext26_assetcontrol_status" Type="Self.ext26_assetcontrol_status" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_log" Type="Self.ext26_assetcontrol_asset_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_status">
+        <PropertyRef Name="id_status" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_log">
+        <PropertyRef Name="id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_us__787EE5A0">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_asset_owner" Type="Self.ext26_assetcontrol_asset_owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_asset_owner">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_tr__03F0984C">
+    <End Role="ext26_assetcontrol_tran_status" Type="Self.ext26_assetcontrol_tran_status" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_tran_status">
+        <PropertyRef Name="id_tran_status" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="id_tran_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__new_d__01142BA1">
+    <End Role="ext26_assetcontrol_department" Type="Self.ext26_assetcontrol_department" Multiplicity="0..1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_department">
+        <PropertyRef Name="id_dept" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="new_dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__new_u__02FC7413">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="0..1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="new_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__old_d__00200768">
+    <End Role="ext26_assetcontrol_department" Type="Self.ext26_assetcontrol_department" Multiplicity="0..1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_department">
+        <PropertyRef Name="id_dept" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="old_dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__old_u__02084FDA">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="0..1" />
+    <End Role="ext26_assetcontrol_computer_tran" Type="Self.ext26_assetcontrol_computer_tran" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_computer_tran">
+        <PropertyRef Name="old_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_ha__5070F446">
+    <End Role="ext26_assetcontrol_hardware" Type="Self.ext26_assetcontrol_hardware" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_hardware_log" Type="Self.ext26_assetcontrol_hardware_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_hardware">
+        <PropertyRef Name="id_hardware" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_hardware_log">
+        <PropertyRef Name="id_hardware" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_ha__5441852A">
+    <End Role="ext26_assetcontrol_hardware" Type="Self.ext26_assetcontrol_hardware" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_hardware_borrow" Type="Self.ext26_assetcontrol_hardware_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_hardware">
+        <PropertyRef Name="id_hardware" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_hardware_borrow">
+        <PropertyRef Name="id_hardware" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_us__4CA06362">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="0..1" />
+    <End Role="ext26_assetcontrol_hardware" Type="Self.ext26_assetcontrol_hardware" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_hardware">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_bo__59063A47">
+    <End Role="ext26_assetcontrol_hardware_borrow" Type="Self.ext26_assetcontrol_hardware_borrow" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_hardware_borrow_log" Type="Self.ext26_assetcontrol_hardware_borrow_log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_hardware_borrow">
+        <PropertyRef Name="id_borrow" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_hardware_borrow_log">
+        <PropertyRef Name="id_borrow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ext26_ass__id_us__5535A963">
+    <End Role="ext26_assetcontrol_user" Type="Self.ext26_assetcontrol_user" Multiplicity="1" />
+    <End Role="ext26_assetcontrol_hardware_borrow" Type="Self.ext26_assetcontrol_hardware_borrow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ext26_assetcontrol_user">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="ext26_assetcontrol_hardware_borrow">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EXT26_ASSETCONTROLEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ext26_assetcontrol_approve" EntityType="Self.ext26_assetcontrol_approve" />
+    <EntitySet Name="ext26_assetcontrol_approve_log" EntityType="Self.ext26_assetcontrol_approve_log" />
+    <EntitySet Name="ext26_assetcontrol_approve_status" EntityType="Self.ext26_assetcontrol_approve_status" />
+    <EntitySet Name="ext26_assetcontrol_asset" EntityType="Self.ext26_assetcontrol_asset" />
+    <EntitySet Name="ext26_assetcontrol_asset_borrow" EntityType="Self.ext26_assetcontrol_asset_borrow" />
+    <EntitySet Name="ext26_assetcontrol_asset_borrow_log" EntityType="Self.ext26_assetcontrol_asset_borrow_log" />
+    <EntitySet Name="ext26_assetcontrol_asset_image" EntityType="Self.ext26_assetcontrol_asset_image" />
+    <EntitySet Name="ext26_assetcontrol_asset_log" EntityType="Self.ext26_assetcontrol_asset_log" />
+    <EntitySet Name="ext26_assetcontrol_asset_owner" EntityType="Self.ext26_assetcontrol_asset_owner" />
+    <EntitySet Name="ext26_assetcontrol_borrow_status" EntityType="Self.ext26_assetcontrol_borrow_status" />
+    <EntitySet Name="ext26_assetcontrol_computer_spec" EntityType="Self.ext26_assetcontrol_computer_spec" />
+    <EntitySet Name="ext26_assetcontrol_computer_tran" EntityType="Self.ext26_assetcontrol_computer_tran" />
+    <EntitySet Name="ext26_assetcontrol_department" EntityType="Self.ext26_assetcontrol_department" />
+    <EntitySet Name="ext26_assetcontrol_hardware" EntityType="Self.ext26_assetcontrol_hardware" />
+    <EntitySet Name="ext26_assetcontrol_hardware_borrow" EntityType="Self.ext26_assetcontrol_hardware_borrow" />
+    <EntitySet Name="ext26_assetcontrol_hardware_borrow_log" EntityType="Self.ext26_assetcontrol_hardware_borrow_log" />
+    <EntitySet Name="ext26_assetcontrol_hardware_log" EntityType="Self.ext26_assetcontrol_hardware_log" />
+    <EntitySet Name="ext26_assetcontrol_role" EntityType="Self.ext26_assetcontrol_role" />
+    <EntitySet Name="ext26_assetcontrol_software" EntityType="Self.ext26_assetcontrol_software" />
+    <EntitySet Name="ext26_assetcontrol_status" EntityType="Self.ext26_assetcontrol_status" />
+    <EntitySet Name="ext26_assetcontrol_tran_status" EntityType="Self.ext26_assetcontrol_tran_status" />
+    <EntitySet Name="ext26_assetcontrol_user" EntityType="Self.ext26_assetcontrol_user" />
+    <AssociationSet Name="FK__ext26_ass__appro__0B91BA14" Association="Self.FK__ext26_ass__appro__0B91BA14">
+      <End Role="ext26_assetcontrol_approve_status" EntitySet="ext26_assetcontrol_approve_status" />
+      <End Role="ext26_assetcontrol_approve" EntitySet="ext26_assetcontrol_approve" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_ap__0F624AF8" Association="Self.FK__ext26_ass__id_ap__0F624AF8">
+      <End Role="ext26_assetcontrol_approve" EntitySet="ext26_assetcontrol_approve" />
+      <End Role="ext26_assetcontrol_approve_log" EntitySet="ext26_assetcontrol_approve_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_co__0A9D95DB" Association="Self.FK__ext26_ass__id_co__0A9D95DB">
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+      <End Role="ext26_assetcontrol_approve" EntitySet="ext26_assetcontrol_approve" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_as__1332DBDC" Association="Self.FK__ext26_ass__id_as__1332DBDC">
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+      <End Role="ext26_assetcontrol_asset_image" EntitySet="ext26_assetcontrol_asset_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_as__6D0D32F4" Association="Self.FK__ext26_ass__id_as__6D0D32F4">
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+      <End Role="ext26_assetcontrol_asset_borrow" EntitySet="ext26_assetcontrol_asset_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_as__778AC167" Association="Self.FK__ext26_ass__id_as__778AC167">
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+      <End Role="ext26_assetcontrol_asset_owner" EntitySet="ext26_assetcontrol_asset_owner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_as__7F2BE32F" Association="Self.FK__ext26_ass__id_as__7F2BE32F">
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_co__619B8048" Association="Self.FK__ext26_ass__id_co__619B8048">
+      <End Role="ext26_assetcontrol_computer_spec" EntitySet="ext26_assetcontrol_computer_spec" />
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_st__628FA481" Association="Self.FK__ext26_ass__id_st__628FA481">
+      <End Role="ext26_assetcontrol_status" EntitySet="ext26_assetcontrol_status" />
+      <End Role="ext26_assetcontrol_asset" EntitySet="ext26_assetcontrol_asset" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_as__73BA3083" Association="Self.FK__ext26_ass__id_as__73BA3083">
+      <End Role="ext26_assetcontrol_asset_borrow" EntitySet="ext26_assetcontrol_asset_borrow" />
+      <End Role="ext26_assetcontrol_asset_borrow_log" EntitySet="ext26_assetcontrol_asset_borrow_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_us__6E01572D" Association="Self.FK__ext26_ass__id_us__6E01572D">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_asset_borrow" EntitySet="ext26_assetcontrol_asset_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_us__14270015" Association="Self.FK__ext26_ass__id_us__14270015">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_asset_image" EntitySet="ext26_assetcontrol_asset_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_co__66603565" Association="Self.FK__ext26_ass__id_co__66603565">
+      <End Role="ext26_assetcontrol_computer_spec" EntitySet="ext26_assetcontrol_computer_spec" />
+      <End Role="ext26_assetcontrol_asset_log" EntitySet="ext26_assetcontrol_asset_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_st__6754599E" Association="Self.FK__ext26_ass__id_st__6754599E">
+      <End Role="ext26_assetcontrol_status" EntitySet="ext26_assetcontrol_status" />
+      <End Role="ext26_assetcontrol_asset_log" EntitySet="ext26_assetcontrol_asset_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_us__787EE5A0" Association="Self.FK__ext26_ass__id_us__787EE5A0">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_asset_owner" EntitySet="ext26_assetcontrol_asset_owner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_tr__03F0984C" Association="Self.FK__ext26_ass__id_tr__03F0984C">
+      <End Role="ext26_assetcontrol_tran_status" EntitySet="ext26_assetcontrol_tran_status" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__new_d__01142BA1" Association="Self.FK__ext26_ass__new_d__01142BA1">
+      <End Role="ext26_assetcontrol_department" EntitySet="ext26_assetcontrol_department" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__new_u__02FC7413" Association="Self.FK__ext26_ass__new_u__02FC7413">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__old_d__00200768" Association="Self.FK__ext26_ass__old_d__00200768">
+      <End Role="ext26_assetcontrol_department" EntitySet="ext26_assetcontrol_department" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__old_u__02084FDA" Association="Self.FK__ext26_ass__old_u__02084FDA">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_computer_tran" EntitySet="ext26_assetcontrol_computer_tran" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_ha__5070F446" Association="Self.FK__ext26_ass__id_ha__5070F446">
+      <End Role="ext26_assetcontrol_hardware" EntitySet="ext26_assetcontrol_hardware" />
+      <End Role="ext26_assetcontrol_hardware_log" EntitySet="ext26_assetcontrol_hardware_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_ha__5441852A" Association="Self.FK__ext26_ass__id_ha__5441852A">
+      <End Role="ext26_assetcontrol_hardware" EntitySet="ext26_assetcontrol_hardware" />
+      <End Role="ext26_assetcontrol_hardware_borrow" EntitySet="ext26_assetcontrol_hardware_borrow" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_us__4CA06362" Association="Self.FK__ext26_ass__id_us__4CA06362">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_hardware" EntitySet="ext26_assetcontrol_hardware" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_bo__59063A47" Association="Self.FK__ext26_ass__id_bo__59063A47">
+      <End Role="ext26_assetcontrol_hardware_borrow" EntitySet="ext26_assetcontrol_hardware_borrow" />
+      <End Role="ext26_assetcontrol_hardware_borrow_log" EntitySet="ext26_assetcontrol_hardware_borrow_log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ext26_ass__id_us__5535A963" Association="Self.FK__ext26_ass__id_us__5535A963">
+      <End Role="ext26_assetcontrol_user" EntitySet="ext26_assetcontrol_user" />
+      <End Role="ext26_assetcontrol_hardware_borrow" EntitySet="ext26_assetcontrol_hardware_borrow" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

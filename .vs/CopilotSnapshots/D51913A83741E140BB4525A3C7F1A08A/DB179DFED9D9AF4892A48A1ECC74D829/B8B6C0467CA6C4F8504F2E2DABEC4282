@@ -1,0 +1,48 @@
+﻿using AssetControl.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    public class TranferController : Controller
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        Entity.EXTEDIEntities dbedi = new Entity.EXTEDIEntities();
+        Entity.EXT_APIEntities dbapi = new Entity.EXT_APIEntities();
+        // GET: Tranfer
+        public ActionResult Index(int? Id)
+        {
+            try
+            {
+                if (Id.HasValue)
+                {
+                   var assets = db.ext26_assetcontrol_asset.FirstOrDefault(a => a.id_asset == Id.Value);
+                    if (assets != null)
+                    {
+                        TempData["Error"] = "Asset not found.";
+                        return RedirectToAction("Index");
+                    }
+
+                   List<User> = Users.Users.Select(u => new
+                    {
+                        u.UserID,
+                        u.UserName
+                    }).ToList();
+
+                }
+
+             
+                
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+               
+            }
+            return View();
+        }
+    }
+}

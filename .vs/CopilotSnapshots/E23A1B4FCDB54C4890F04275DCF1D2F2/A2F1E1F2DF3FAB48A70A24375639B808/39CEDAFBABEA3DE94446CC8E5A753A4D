@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    
+    public class TranferController : Controller
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        Entity.EXT_APIEntities dbapi = new Entity.EXT_APIEntities();
+        Entity.EXTEDIEntities dbedi = new Entity.EXTEDIEntities();
+        // GET: Tranfer
+        public ActionResult Index(int? Id)
+        {
+            // ถ้าไม่ได้ส่ง Id มา → กลับหน้า Index ทันที
+            if (!Id.HasValue)
+            {
+                return RedirectToAction("Index");
+            }
+
+            // ค้นหา Asset ที่มี id_asset ตรงกับ Id ที่รับมา
+            // FirstOrDefault → คืน null ถ้าไม่พบ แทนที่จะ throw Exception
+            var assets = db.ext26_assetcontrol_asset.FirstOrDefault(m => m.id_asset == Id.Value);
+            if (assets == null)
+            {
+                // ไม่พบ Asset ที่ระบุ → กลับหน้า Index
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+    }
+}

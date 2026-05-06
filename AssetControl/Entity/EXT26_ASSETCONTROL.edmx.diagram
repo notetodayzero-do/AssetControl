@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c953f726cfd54ab982b805005bd79a5a" Name="Diagram1">
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve" Width="1.5" PointX="8.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve_log" Width="1.5" PointX="10.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve_status" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset" Width="1.5" PointX="3.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_borrow" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_borrow_log" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_image" Width="1.5" PointX="6" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_log" Width="1.5" PointX="6.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_owner" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_borrow_status" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_computer_spec" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_computer_tran" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_department" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_borrow" Width="1.5" PointX="6" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_borrow_log" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_log" Width="1.5" PointX="6" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_type" Width="1.5" PointX="1.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_role" Width="1.5" PointX="8.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_software" Width="1.5" PointX="10.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_status" Width="1.5" PointX="1.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_tran_status" Width="1.5" PointX="3.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_type_computer" Width="1.5" PointX="1.5" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="EXT26_ASSETCONTROLModel.ext26_assetcontrol_user" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__appro__236943A5" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ap__2739D489" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_co__22751F6C" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__00200768" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__2A164134" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_co__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_st__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__borro__02084FDA" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_as__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_us__01142BA1" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__borro__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_us__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_co__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_st__797309D9" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_us__10566F31" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__borro__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__borro__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ty__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_tr__1BC821DD" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__new_d__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__new_u__1AD3FDA4" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__old_d__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__old_u__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ha__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ha__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ha__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_ty__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_bo__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_us__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="EXT26_ASSETCONTROLModel.FK__ext26_ass__id_us__6A30C649" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

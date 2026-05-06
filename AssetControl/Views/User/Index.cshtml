@@ -1,0 +1,85 @@
+﻿@using AssetControl.Models;
+@model List<ext26_assetcontrol_user>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"].ToString()
+    </div>
+}
+
+<div class="card basic-data-table">
+    <div class="card-header d-flex align-items-baseline justify-content-between">
+        <h5 class="card-title mb-0">Default Datatables</h5>
+        <a class="btn btn-primary" href="@Url.Action("Create","Employee")">
+
+            Create Employee
+        </a>
+    </div>
+    <div class="card-body">
+        <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="form-check style-check d-flex align-items-center">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">
+                                รหัสพนักงาน
+                            </label>
+                        </div>
+                    </th>
+                    <th scope="col">ชื่อ</th>
+                    <th scope="col">Passowrd</th>
+                    <th scope="col">ตำแหน่ง</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">แผนก</th>
+
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-check style-check d-flex align-items-center">
+                                    <input class="form-check-input" type="checkbox">
+                                    <label class="form-check-label">
+                                        @item.number_emp
+                                    </label>
+                                </div>
+                            </td>
+
+                            <td>@item.name_emp</td>
+                            <td>@item.password_emp</td>
+                            <td>@item.positionid</td>
+                            <td>@item.email</td>
+                            <td>@item.ext26_assetcontrol_department.name_dpm</td>
+                            <td>
+                                <a type="button" class="btn btn-link" href="@Url.Action("Update","Employee", new { Id = item.id_emp})">แก้ไข</a>
+                                <a type="button" class="btn btn-link text-danger" href="@Url.Action("Cancel","Employee", new { Id = item.id_emp })">ยกเลิก</a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#dataTable").DataTable();
+    </script>
+
+}
+

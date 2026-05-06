@@ -1,0 +1,25 @@
+﻿@using AssetControl.Models;
+@model ext26_assetcontrol_asset
+@{
+    ViewBag.Title = "";
+}
+
+<h2></h2>
+
+<div class="basic-data-table">
+    <form action="@Url.Action("PostData","Asset")">
+        <div class="card-body">
+            <div>
+                <h4 class="fw-bold">Create Asset</h4>
+
+                <div class="col-6 mt-3">
+                    <label class="form-label">Asset</label>
+                    <input required type="text"  class="form-control"/>
+                </div>
+                
+
+            </div>
+        </div>
+    </form>
+
+</div>

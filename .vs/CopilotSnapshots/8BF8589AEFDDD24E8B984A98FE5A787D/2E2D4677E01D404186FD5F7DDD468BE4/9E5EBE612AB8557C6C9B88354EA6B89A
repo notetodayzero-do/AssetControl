@@ -1,0 +1,77 @@
+﻿using AssetControl.Entity;
+using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    
+    public class AssetController : BaseController
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+       
+        // GET: Asset
+        public ActionResult Index()
+        {
+            List<ext26_assetcontrol_asset> asset = db.ext26_assetcontrol_asset.ToList();
+            return View(asset);
+        }
+
+        public ActionResult Create()
+        {
+            ext26_assetcontrol_asset model = new ext26_assetcontrol_asset();
+            model.create_date = DateTime.Now;
+
+            // load specs and statuses for dropdowns
+            ViewBag.Specs = new SelectList(db.ext26_assetcontrol_computer_spec.ToList(), "id_com_spec", "brand");
+            ViewBag.Statuses = new SelectList(db.ext26_assetcontrol_status.ToList(), "id_status", "status_name");
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ext26_assetcontrol_asset asset)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    asset.create_date = DateTime.Now;
+                    var current = GetUser();
+                    if (current != null)
+                    {
+                        asset.create_by = current.UserName ?? current.EmpID;
+                    }
+                    // default status if not provided
+                    if (asset.id_status == 0)
+                    {
+                        asset.id_status = db.ext26_assetcontrol_status.OrderBy(s => s.id_status).FirstOrDefault()?.id_status ?? 1;
+                    }
+
+                    db.ext26_assetcontrol_asset.Add(asset);
+                    db.SaveChanges();
+                    TempData["Success"] = "Create asset successful";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+
+            // reload dropdowns on error
+            ViewBag.Specs = new SelectList(db.ext26_assetcontrol_computer_spec.ToList(), "id_com_spec", "brand", asset.id_com_spec);
+            ViewBag.Statuses = new SelectList(db.ext26_assetcontrol_status.ToList(), "id_status", "status_name", asset.id_status);
+            return View(asset);
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+    }
+}
+

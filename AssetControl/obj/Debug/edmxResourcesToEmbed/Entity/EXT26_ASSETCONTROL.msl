@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EXT26_ASSETCONTROLModelStoreContainer" CdmEntityContainer="EXT26_ASSETCONTROLEntities">
+    <EntitySetMapping Name="ext26_assetcontrol_approve">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_approve">
+          <ScalarProperty Name="id_approve" ColumnName="id_approve" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="id_computer_tran" ColumnName="id_computer_tran" />
+          <ScalarProperty Name="approve_ind" ColumnName="approve_ind" />
+          <ScalarProperty Name="approve_status" ColumnName="approve_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_approve_log">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve_log">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_approve_log">
+          <ScalarProperty Name="id_approve_log" ColumnName="id_approve_log" />
+          <ScalarProperty Name="id_approve" ColumnName="id_approve" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="id_computer_tran" ColumnName="id_computer_tran" />
+          <ScalarProperty Name="approve_ind" ColumnName="approve_ind" />
+          <ScalarProperty Name="approve_status" ColumnName="approve_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="approved_by" ColumnName="approved_by" />
+          <ScalarProperty Name="approve_date" ColumnName="approve_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_approve_status">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_approve_status">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_approve_status">
+          <ScalarProperty Name="id_approve_status" ColumnName="id_approve_status" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset">
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="asset_number" ColumnName="asset_number" />
+          <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+          <ScalarProperty Name="id_com_spec" ColumnName="id_com_spec" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="dept" ColumnName="dept" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset_borrow">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_borrow">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset_borrow">
+          <ScalarProperty Name="id_asset_borrow" ColumnName="id_asset_borrow" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="borrow_date" ColumnName="borrow_date" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="borrow_status" ColumnName="borrow_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset_borrow_log">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_borrow_log">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset_borrow_log">
+          <ScalarProperty Name="id_asset_borrow_log" ColumnName="id_asset_borrow_log" />
+          <ScalarProperty Name="id_asset_borrow" ColumnName="id_asset_borrow" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="borrow_date" ColumnName="borrow_date" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="borrow_status" ColumnName="borrow_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset_image">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_image">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset_image">
+          <ScalarProperty Name="id_image" ColumnName="id_image" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="image_name" ColumnName="image_name" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+          <ScalarProperty Name="image_type" ColumnName="image_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset_log">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_log">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset_log">
+          <ScalarProperty Name="id_asset_log" ColumnName="id_asset_log" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="asset_number" ColumnName="asset_number" />
+          <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+          <ScalarProperty Name="id_com_spec" ColumnName="id_com_spec" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="dept" ColumnName="dept" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_asset_owner">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_asset_owner">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_asset_owner">
+          <ScalarProperty Name="id_owner" ColumnName="id_owner" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_borrow_status">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_borrow_status">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_borrow_status">
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_computer_spec">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_computer_spec">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_computer_spec">
+          <ScalarProperty Name="id_com_spec" ColumnName="id_com_spec" />
+          <ScalarProperty Name="id_type_com" ColumnName="id_type_com" />
+          <ScalarProperty Name="brand" ColumnName="brand" />
+          <ScalarProperty Name="model" ColumnName="model" />
+          <ScalarProperty Name="cpu" ColumnName="cpu" />
+          <ScalarProperty Name="gpu" ColumnName="gpu" />
+          <ScalarProperty Name="memory" ColumnName="memory" />
+          <ScalarProperty Name="disk_size" ColumnName="disk_size" />
+          <ScalarProperty Name="os" ColumnName="os" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_computer_tran">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_computer_tran">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_computer_tran">
+          <ScalarProperty Name="id_computer_tran" ColumnName="id_computer_tran" />
+          <ScalarProperty Name="id_asset" ColumnName="id_asset" />
+          <ScalarProperty Name="id_tran_status" ColumnName="id_tran_status" />
+          <ScalarProperty Name="old_dept_id" ColumnName="old_dept_id" />
+          <ScalarProperty Name="new_dept_id" ColumnName="new_dept_id" />
+          <ScalarProperty Name="old_user_id" ColumnName="old_user_id" />
+          <ScalarProperty Name="new_user_id" ColumnName="new_user_id" />
+          <ScalarProperty Name="tran_type" ColumnName="tran_type" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_department">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_department">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_department">
+          <ScalarProperty Name="id_dept" ColumnName="id_dept" />
+          <ScalarProperty Name="code_dept" ColumnName="code_dept" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="factory" ColumnName="factory" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_hardware">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_hardware">
+          <ScalarProperty Name="id_hardware" ColumnName="id_hardware" />
+          <ScalarProperty Name="id_type_hardware" ColumnName="id_type_hardware" />
+          <ScalarProperty Name="detail_hardware" ColumnName="detail_hardware" />
+          <ScalarProperty Name="total_qty" ColumnName="total_qty" />
+          <ScalarProperty Name="public_total_qty" ColumnName="public_total_qty" />
+          <ScalarProperty Name="public_all" ColumnName="public_all" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_hardware_borrow">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_borrow">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_hardware_borrow">
+          <ScalarProperty Name="id_borrow" ColumnName="id_borrow" />
+          <ScalarProperty Name="id_hardware" ColumnName="id_hardware" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="borrow_qty" ColumnName="borrow_qty" />
+          <ScalarProperty Name="borrow_date" ColumnName="borrow_date" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="borrow_status" ColumnName="borrow_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_hardware_borrow_log">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_borrow_log">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_hardware_borrow_log">
+          <ScalarProperty Name="id_borrow_log" ColumnName="id_borrow_log" />
+          <ScalarProperty Name="id_borrow" ColumnName="id_borrow" />
+          <ScalarProperty Name="id_hardware" ColumnName="id_hardware" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="borrow_qty" ColumnName="borrow_qty" />
+          <ScalarProperty Name="borrow_date" ColumnName="borrow_date" />
+          <ScalarProperty Name="due_date" ColumnName="due_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="borrow_status" ColumnName="borrow_status" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_hardware_log">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_log">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_hardware_log">
+          <ScalarProperty Name="id_hardware_log" ColumnName="id_hardware_log" />
+          <ScalarProperty Name="id_hardware" ColumnName="id_hardware" />
+          <ScalarProperty Name="id_type_hardware" ColumnName="id_type_hardware" />
+          <ScalarProperty Name="detail_hardware" ColumnName="detail_hardware" />
+          <ScalarProperty Name="total_qty" ColumnName="total_qty" />
+          <ScalarProperty Name="public_total_qty" ColumnName="public_total_qty" />
+          <ScalarProperty Name="public_all" ColumnName="public_all" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_hardware_type">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_hardware_type">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_hardware_type">
+          <ScalarProperty Name="id_type_hardware" ColumnName="id_type_hardware" />
+          <ScalarProperty Name="hardware_name" ColumnName="hardware_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_role">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_role">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_role">
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_software">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_software">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_software">
+          <ScalarProperty Name="id_software" ColumnName="id_software" />
+          <ScalarProperty Name="name_software" ColumnName="name_software" />
+          <ScalarProperty Name="license" ColumnName="license" />
+          <ScalarProperty Name="detail_software" ColumnName="detail_software" />
+          <ScalarProperty Name="url_software" ColumnName="url_software" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_status">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_status">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_status">
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_tran_status">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_tran_status">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_tran_status">
+          <ScalarProperty Name="id_tran_status" ColumnName="id_tran_status" />
+          <ScalarProperty Name="status_name" ColumnName="status_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_type_computer">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_type_computer">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_type_computer">
+          <ScalarProperty Name="id_type_com" ColumnName="id_type_com" />
+          <ScalarProperty Name="type_computer" ColumnName="type_computer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ext26_assetcontrol_user">
+      <EntityTypeMapping TypeName="EXT26_ASSETCONTROLModel.ext26_assetcontrol_user">
+        <MappingFragment StoreEntitySet="ext26_assetcontrol_user">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_emp" ColumnName="id_emp" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="remark" ColumnName="remark" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="update_by" ColumnName="update_by" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="cancel_by" ColumnName="cancel_by" />
+          <ScalarProperty Name="cancel_date" ColumnName="cancel_date" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

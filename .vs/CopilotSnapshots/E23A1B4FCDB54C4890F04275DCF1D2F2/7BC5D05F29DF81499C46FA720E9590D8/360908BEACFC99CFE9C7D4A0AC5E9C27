@@ -1,0 +1,74 @@
+﻿using AssetControl.Entity;
+using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    
+    public class TranferController : Controller
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        Entity.EXT_APIEntities dbapi = new Entity.EXT_APIEntities();
+        Entity.EXTEDIEntities dbedi = new Entity.EXTEDIEntities();
+        // GET: Tranfer
+        public ActionResult Index(int? Id)
+        {
+            try
+            {
+                // ถ้าไม่ได้ส่ง Id มา → กลับหน้า Index ทันที
+                if (!Id.HasValue)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // ค้นหา Asset ที่มี id_asset ตรงกับ Id ที่รับมา
+                // FirstOrDefault → คืน null ถ้าไม่พบ แทนที่จะ throw Exception
+                var assets = db.ext26_assetcontrol_asset.FirstOrDefault(m => m.id_asset == Id.Value);
+                if (assets == null)
+                {
+                    // ไม่พบ Asset ที่ระบุ → กลับหน้า Index
+                    return RedirectToAction("Index");
+                }
+
+                var comTran = new ext26_assetcontrol_computer_tran
+                {
+                    id_asset = assets.id_asset,
+                    create_date = DateTime.Now,
+                };
+
+                List<User> Users = dbapi.Users.ToList();
+                // ใช้ ext26_assetcontrol_department จาก DB หลัก (id_dept = int)
+                List<ext26_assetcontrol_department> Depts = db.ext26_assetcontrol_department
+                    .Where(d => d.is_active)
+                    .OrderBy(d => d.dept_name)
+                    .ToList();
+
+                ViewBag.assets = assets;
+                ViewBag.Depts  = Depts;
+                ViewBag.Users  = Users;
+                return View(comTran);
+
+
+            }
+            catch (Exception ex)
+            {
+
+                TempData["Error"] = ex.Message;
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+
+    }
+}

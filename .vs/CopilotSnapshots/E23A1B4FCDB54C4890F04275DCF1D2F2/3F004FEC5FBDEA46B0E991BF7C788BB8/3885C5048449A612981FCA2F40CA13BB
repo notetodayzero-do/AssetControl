@@ -1,0 +1,69 @@
+﻿using AssetControl.Entity;
+using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    
+    public class TranferController : Controller
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        Entity.EXT_APIEntities dbapi = new Entity.EXT_APIEntities();
+        Entity.EXTEDIEntities dbedi = new Entity.EXTEDIEntities();
+        // GET: Tranfer
+        public ActionResult Index(int? Id)
+        {
+            try
+            {
+                if (!Id.HasValue)
+                    return RedirectToAction("Index", "Asset");
+
+                // ดึง Asset พร้อม Computer Spec ในครั้งเดียว (Include)
+                var asset = db.ext26_assetcontrol_asset
+                    .Include("ext26_assetcontrol_computer_spec")
+                    .FirstOrDefault(m => m.id_asset == Id.Value);
+
+                if (asset == null)
+                    return RedirectToAction("Index", "Asset");
+
+                // ดึง Computer Spec จาก asset ที่ Include มาแล้ว
+                var spec = asset.ext26_assetcontrol_computer_spec;
+
+                // ดึงแผนกจาก DB หลัก เพื่อ lookup ชื่อแผนกจาก code_dept ของ asset
+                var dept = db.ext26_assetcontrol_department
+                    .FirstOrDefault(d => d.code_dept == asset.dept);
+
+                var comTran = new ext26_assetcontrol_computer_tran
+                {
+                    id_asset    = asset.id_asset,
+                    create_date = DateTime.Now,
+                };
+
+                // ส่งข้อมูลแต่ละส่วนไปให้ View แสดงผล
+                ViewBag.asset    = asset;
+                ViewBag.spec     = spec;
+                ViewBag.dept     = dept;
+
+                return View(comTran);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+            }
+            return RedirectToAction("Index", "Asset");
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+
+    }
+}

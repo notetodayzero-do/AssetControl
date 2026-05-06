@@ -1,0 +1,42 @@
+﻿using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    public class BaseController : Controller
+    {
+        protected readonly Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        protected readonly Entity.EXT_APIEntities db_api = new Entity.EXT_APIEntities();
+
+
+        protected Entity.User GetUser()
+        {
+            var user = Session["USER"] as Entity.User;
+            if(user != null)
+            {
+                return user;
+            }
+
+            return null;
+        }
+
+
+        // GET: Base
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var user = Session["USER"] as Entity.User;
+
+            if (user == null)
+            {
+                filterContext.Result = new RedirectResult(Url.Action("index", "login"));
+                return;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
+}

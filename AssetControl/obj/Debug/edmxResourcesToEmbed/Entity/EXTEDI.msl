@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EXTEDIModelStoreContainer" CdmEntityContainer="EXTEDIEntities">
+    <EntitySetMapping Name="DEPTs">
+      <EntityTypeMapping TypeName="EXTEDIModel.DEPT">
+        <MappingFragment StoreEntitySet="DEPT">
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="FactoryId" ColumnName="FactoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,39 @@
+﻿@using AssetControl.Models;
+@model List<ext26_assetcontrol_user_role>
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<h2>?????????????????</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ext26_assetcontrol_user?.username</td>
+            <td>@item.ext26_assetcontrol_role?.role_name</td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_user_role }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

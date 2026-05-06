@@ -1,0 +1,157 @@
+﻿@using AssetControl.Entity
+@using AssetControl.Models
+@model List<ext26_assetcontrol_asset>
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+
+<h2>Index</h2>
+@functions{
+        EXT_APIEntities apidb = new EXT_APIEntities();
+        EXTEDIEntities edidb = new EXTEDIEntities();
+
+        public string GetUsers(int? UID)
+        {
+            try
+            {
+                if (UID.HasValue)
+                {
+                    USER_CUSTOM users = apidb.Users
+                         .Select(u => new USER_CUSTOM
+                         {
+                             UID = u.UID,
+                             FName = u.FName,
+                             LName = u.LName,
+                             EmpID = u.EmpID
+                         }).FirstOrDefault(m => m.UID == UID.Value);
+                    if (users != null)
+                    {
+                        return $"{users.EmpID} {users.FName} {users.LName}";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+            return "";
+        }
+    }
+
+
+<div class="card basic-data-table">
+<div class="card-header d-flex align-items-baseline justify-content-between">
+<h5 class="card-title mb-0">Computer Spec</h5>
+<a class="btn btn-primary" href="@Url.Action("Create", "Asset")">
+Create
+</a>
+</div>
+<div class="card-body">
+<table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+<thead>
+    <tr><th scope = "col">Image</th>
+        <th scope = "col">Asset Number</th>
+        <th scope = "col">Serial Number</th>
+        <th scope = "col">ID Computer Spec</th>
+        <th scope = "col">ID Status</th>
+        <th scope = "col">Dept</th>
+        <th scope = "col">Emp</th>
+        <th scope = "col">Remark</th >
+        <th scope = "col">Create By</th>
+        <th scope = "col">Create Date</th>
+    </tr>
+</thead>
+
+<tbody>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                  
+                    @if (item.ext26_assetcontrol_asset_image != null && item.ext26_assetcontrol_asset_image.Count() > 0)
+                    {
+                        <img src="/Asset/GetImage?id=@item.ext26_assetcontrol_asset_image.ToList()[0].image_name" 
+                             style="max-height:60px; max-width:80px; object-fit:contain;" />
+                    }
+                    else
+                    {
+                        <p>no image</p>
+                    }
+                </td>
+                <td>@item.asset_number</td>
+                <td>@item.serial_number</td>
+                <td>
+                    @{
+                        var spec = item.ext26_assetcontrol_computer_spec;
+                    }
+                    @if (spec != null)
+                    {
+                        <span class="d-block fw-semibold">@spec.brand @spec.model</span>
+                        <small class="text-muted d-block">CPU: @spec.cpu</small>
+                        <small class="text-muted d-block">GPU: @spec.gpu</small>
+                        <small class="text-muted d-block">RAM: @spec.memory | HDD: @spec.disk_size</small>
+                        <small class="text-muted d-block">OS: @spec.os</small>
+                    }
+                    else
+                    {
+                        <span class="text-muted">-</span>
+                    }
+                </td>
+                <td>
+                    @{
+                        var status = item.ext26_assetcontrol_status;
+                    }
+                    @if (status != null)
+                    {
+                        string badgeClass;
+                        switch (status.id_status)
+                        {
+                            case 1: badgeClass = "badge bg-success";              break; // พร้อมใช้งาน
+                            case 2: badgeClass = "badge bg-primary";              break; // กำลังใช้งาน
+                            case 3: badgeClass = "badge bg-warning text-dark";    break; // ส่งซ่อมภายนอก
+                            case 4: badgeClass = "badge bg-info text-dark";       break; // อยู่ระหว่างโอนย้าย
+                            case 5: badgeClass = "badge bg-danger";               break; // เสียหายไม่สามารถซ่อมได้
+                            case 6: badgeClass = "badge bg-purple text-white";    break; // อยู่ระหว่างการยืมใช้งาน
+                            case 7: badgeClass = "badge bg-dark";                 break; // เกินกำหนดการคืน
+                            default: badgeClass = "badge bg-secondary";           break;
+                        }
+                        <span class="@badgeClass">@status.status_name</span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">-</span>
+                    }
+                </td>
+                <td>@item.dept</td>
+      
+                <td>@item.remark</td>
+                <td>@item.create_by</td>
+                <td>@item.create_date</td>
+            </tr>
+        }
+    }
+
+</tbody>
+</table>
+</div>
+</div>
+@section scripts
+    {
+<script>
+$(function () {
+            if ($.fn.DataTable) {
+    $("#dataTable").DataTable({
+                // ปรับได้ตามต้องการ
+                order: [[1, "asc"]],
+        pageLength: 10
+    });
+            }
+        });
+</script>
+}

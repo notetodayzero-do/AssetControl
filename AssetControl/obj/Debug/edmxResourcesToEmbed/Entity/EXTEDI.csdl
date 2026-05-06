@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EXTEDIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DEPT">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeptName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FactoryId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="EXTEDIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DEPTs" EntityType="Self.DEPT" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+
+
+
+    @Html.Partial("_AsideLayout")
+
+    <main class="dashboard-main">
+        @Html.Partial("_NavbarLayout")
+        <div class="dashboard-main-body">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
+                <h6 class="fw-semibold mb-0">@ViewBag.Title</h6>
+                <ul class="d-flex align-items-center gap-2">
+                    <li class="fw-medium">
+                        <a href="@Url.Action("Index", "Home")" class="d-flex align-items-center gap-1 hover-text-primary">
+                            <iconify-icon icon="lucide:home" class="icon text-lg"></iconify-icon>
+                            Home
+                        </a>
+                    </li>
+                    <li>-</li>
+                    <li class="fw-medium">@ViewBag.Title</li>
+                </ul>
+            </div>
+
+            @RenderBody()
+        </div>
+
+
+    </main>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

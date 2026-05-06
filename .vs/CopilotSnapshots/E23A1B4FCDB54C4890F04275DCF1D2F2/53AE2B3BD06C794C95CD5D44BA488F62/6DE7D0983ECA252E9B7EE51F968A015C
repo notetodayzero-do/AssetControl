@@ -1,0 +1,106 @@
+﻿@using AssetControl.Entity;
+@using AssetControl.Models
+@model ext26_assetcontrol_computer_tran
+
+@{
+    ViewBag.Title = "Index";
+    ext26_assetcontrol_asset assets = ViewBag.assets;
+    List<User> Users                                    = ViewBag.Users;
+    List<ext26_assetcontrol_department> depts           = ViewBag.Depts;
+
+    // สร้างข้อความแสดงข้อมูล Asset + Computer Spec
+    var spec = assets?.ext26_assetcontrol_computer_spec;
+    string assetLabel = assets != null
+        ? $"Asset: {assets.asset_number} | S/N: {assets.serial_number}" +
+          (spec != null
+              ? $" | Brand: {spec.brand} {spec.model} | CPU: {spec.cpu} | GPU: {spec.gpu} | RAM: {spec.memory} | HDD: {spec.disk_size} | OS: {spec.os}"
+              : "")
+        : "";
+}
+
+<h2>โอนย้าย Asset</h2>
+
+<div class="card">
+    <div class="card-header">
+        <b>เลขเอกสาร (DocID) : @Model.id_computer_tran</b>
+    </div>
+
+    <div class="card-body">
+        <form action="@Url.Action("UpdateData", "Tranfer")" method="post">
+            <input type="hidden" name="id_asset" value="@Model.id_asset" />
+
+            <div class="row">
+                <div class="col-12 col-lg-6 mt-3">
+                    <label class="form-label">Asset</label>
+                    <input readonly disabled value="@assetLabel" type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">แผนกที่โอนย้าย (ต้นทาง)</label>
+                    <select class="form-select" name="old_dept_id" disabled>
+                        <option value="">-- แผนกต้นทาง --</option>
+                        @if (depts != null && depts.Count > 0)
+                        {
+                            foreach (var item in depts)
+                            {
+                                // เปรียบเทียบ assets.dept (code_dept) กับ item.code_dept
+                                if (assets != null && assets.dept == item.code_dept)
+                                {
+                                    <option selected value="@item.id_dept">@item.dept_name @item.factory</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id_dept">@item.dept_name @item.factory</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">แผนกที่รับ (ปลายทาง)</label>
+                    <select class="form-select" name="new_dept_id">
+                        <option value="">-- แผนกปลายทาง --</option>
+                        @if (depts != null && depts.Count > 0)
+                        {
+                            foreach (var item in depts)
+                            {
+                                <option value="@item.id_dept">@item.dept_name @item.factory</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">พนักงานผู้รับ</label>
+                    <select class="form-select" name="new_user_id">
+                        <option value="">-- เลือกพนักงาน --</option>
+                        @if (Users != null && Users.Count > 0)
+                        {
+                            foreach (var item in Users)
+                            {
+                                <option value="@item.UID">@item.EmpID @item.FName @item.LName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6 mt-3">
+                    <label class="form-label">Comment</label>
+                    <textarea name="remark" class="form-control" rows="4" placeholder="Enter a description..."></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

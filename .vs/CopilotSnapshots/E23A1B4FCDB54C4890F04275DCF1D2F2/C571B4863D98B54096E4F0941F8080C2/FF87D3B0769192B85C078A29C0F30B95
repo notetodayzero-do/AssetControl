@@ -1,0 +1,140 @@
+﻿@using AssetControl.Entity;
+@using AssetControl.Models
+@model ext26_assetcontrol_computer_tran
+
+@{
+    ViewBag.Title = "Index";
+    ext26_assetcontrol_asset assets                     = ViewBag.assets;
+    List<User> Users                                    = ViewBag.Users;
+    List<ext26_assetcontrol_department> depts           = ViewBag.Depts;
+    var spec = assets?.ext26_assetcontrol_computer_spec;
+}
+
+<h2>โอนย้าย Asset</h2>
+
+<div class="card">
+    <div class="card-header">
+        <b>เลขเอกสาร (DocID) : @Model.id_computer_tran</b>
+    </div>
+
+    <div class="card-body">
+        <form action="@Url.Action("UpdateData", "Tranfer")" method="post">
+            <input type="hidden" name="id_asset" value="@Model.id_asset" />
+
+            @* ── ข้อมูล Asset ── *@
+            @if (assets != null)
+            {
+                <div class="row">
+                    <div class="col-12 col-lg-4 mt-3">
+                        <label class="form-label">Asset Number</label>
+                        <input readonly disabled value="@assets.asset_number" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-lg-4 mt-3">
+                        <label class="form-label">Serial Number</label>
+                        <input readonly disabled value="@assets.serial_number" type="text" class="form-control" />
+                    </div>
+                </div>
+
+                @* ── ข้อมูล Computer Spec (ผ่าน Navigation Property) ── *@
+                if (spec != null)
+                {
+                    <div class="row mt-2">
+                        <div class="col-12 col-lg-3 mt-2">
+                            <label class="form-label">Brand / Model</label>
+                            <input readonly disabled value="@spec.brand @spec.model" type="text" class="form-control" />
+                        </div>
+                        <div class="col-12 col-lg-2 mt-2">
+                            <label class="form-label">CPU</label>
+                            <input readonly disabled value="@spec.cpu" type="text" class="form-control" />
+                        </div>
+                        <div class="col-12 col-lg-2 mt-2">
+                            <label class="form-label">GPU</label>
+                            <input readonly disabled value="@spec.gpu" type="text" class="form-control" />
+                        </div>
+                        <div class="col-12 col-lg-2 mt-2">
+                            <label class="form-label">RAM</label>
+                            <input readonly disabled value="@spec.memory" type="text" class="form-control" />
+                        </div>
+                        <div class="col-12 col-lg-1 mt-2">
+                            <label class="form-label">HDD</label>
+                            <input readonly disabled value="@spec.disk_size" type="text" class="form-control" />
+                        </div>
+                        <div class="col-12 col-lg-2 mt-2">
+                            <label class="form-label">OS</label>
+                            <input readonly disabled value="@spec.os" type="text" class="form-control" />
+                        </div>
+                    </div>
+                }
+            }
+
+            <hr class="mt-4" />
+
+            @* ── ข้อมูลการโอนย้าย ── *@
+            <div class="row">
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">แผนกต้นทาง</label>
+                    <select class="form-select" name="old_dept_id" disabled>
+                        <option value="">-- แผนกต้นทาง --</option>
+                        @if (depts != null && depts.Count > 0)
+                        {
+                            foreach (var item in depts)
+                            {
+                                if (assets != null && assets.dept == item.code_dept)
+                                {
+                                    <option selected value="@item.id_dept">@item.dept_name @item.factory</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.id_dept">@item.dept_name @item.factory</option>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">แผนกปลายทาง</label>
+                    <select class="form-select" name="new_dept_id">
+                        <option value="">-- แผนกปลายทาง --</option>
+                        @if (depts != null && depts.Count > 0)
+                        {
+                            foreach (var item in depts)
+                            {
+                                <option value="@item.id_dept">@item.dept_name @item.factory</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">พนักงานผู้รับ</label>
+                    <select class="form-select" name="new_user_id">
+                        <option value="">-- เลือกพนักงาน --</option>
+                        @if (Users != null && Users.Count > 0)
+                        {
+                            foreach (var item in Users)
+                            {
+                                <option value="@item.UID">@item.EmpID @item.FName @item.LName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-6 mt-3">
+                    <label class="form-label">Comment</label>
+                    <textarea name="remark" class="form-control" rows="4" placeholder="Enter a description..."></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                    <a href="@Url.Action("Index", "Asset")" class="btn btn-outline-secondary ms-2">ยกเลิก</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

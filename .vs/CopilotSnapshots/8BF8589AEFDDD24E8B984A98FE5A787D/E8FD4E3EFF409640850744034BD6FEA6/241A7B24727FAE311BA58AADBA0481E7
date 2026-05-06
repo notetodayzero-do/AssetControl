@@ -1,0 +1,70 @@
+﻿@using AssetControl.Entity;
+@model ext26_assetcontrol_asset
+@{
+    ViewBag.Title = "";
+}
+
+
+
+<div class="dashboard-main-body">
+
+    <div class="card">
+        <div class="card-header d-flex flex-row justify-content-between align-items-center ">
+            <div class="d-flex flex-column">
+                <h1 class="h3 mb-0">Create Asset</h1>
+                <small class="text-muted">Add a new Asset to the system</small>
+            </div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-secondary" })
+        </div>
+
+        @using (Html.BeginForm("Create", "Asset", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card-body row">
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.asset_number, "Asset Number")
+                    @Html.TextBoxFor(m => m.asset_number, new { @class = "form-control", required = "required" })
+                </div>
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.serial_number, "Serial Number")
+                    @Html.TextBoxFor(m => m.serial_number, new { @class = "form-control" })
+                </div>
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.id_com_spec, "Spec")
+                    @Html.DropDownListFor(m => m.id_com_spec, (SelectList)ViewBag.Specs, "-- Select Spec --", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="card-body row">
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.id_status, "Status")
+                    @Html.DropDownListFor(m => m.id_status, (SelectList)ViewBag.Statuses, "-- Select Status --", new { @class = "form-control" })
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.dept, "Department")
+                    @Html.DropDownListFor(m => m.dept, (SelectList)ViewBag.Departments, "-- Select Dept --", new { @class = "form-control" })
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    @Html.LabelFor(m => m.emp, "Employee")
+                    @Html.DropDownListFor(m => m.emp, (SelectList)ViewBag.Users, "-- Select User --", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="card-body row">
+                <div class="col-12">
+                    @Html.LabelFor(m => m.remark, "Remark")
+                    @Html.TextAreaFor(m => m.remark, 3, 80, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="card-footer d-flex flex-row gap-3">
+                <button type="submit" class="btn btn-primary-600 radius-8 px-20 py-11 d-flex align-items-center gap-2">Save</button>
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-outline-secondary" })
+            </div>
+        }
+    </div>
+
+</div>

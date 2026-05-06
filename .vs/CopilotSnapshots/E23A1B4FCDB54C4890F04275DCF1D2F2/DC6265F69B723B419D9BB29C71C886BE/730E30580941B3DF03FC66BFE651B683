@@ -1,0 +1,94 @@
+﻿@using AssetControl.Entity;
+@model ext26_assetcontrol_computer_spec
+
+@{
+    ViewBag.Title = "Create";
+    // รับข้อมูล User ที่ login อยู่จาก ViewBag (ส่งมาจาก ComputerSpecController)
+    User currentUser = ViewBag.CurrentUser as User;
+}
+
+
+<div class="dashboard-main-body">
+
+    <div class="card">
+        <div class="card-header d-flex flex-row justify-content-between align-items-center ">
+            <div class="d-flex flex-column">
+                <h1 class="h3 mb-0">Create Spec</h1>
+                <small class="text-muted">Add a new user to the system</small>
+            </div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-secondary" })
+        </div>
+
+        <form action="@Url.Action("Create","ComputerSpec")" method="post">
+
+            @Html.AntiForgeryToken()
+
+            
+
+            <div class="card-body row">
+
+                <div class="col-12 col-lg-4">
+                    <label class="form-label">Brand</label>
+                    <input required type="text" name="brand" value="@Model.brand" class="form-control" />
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <label class="form-label">Model</label>
+                    <input required type="text" name="model" value="@Model.model" class="form-control" />
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <label class="form-label">OS</label>
+                    <input required type="text" name="os" value="@Model.os" class="form-control" />
+                </div>
+
+
+                <div class="col-12 col-lg-3">
+                    <label class="form-label">CPU</label>
+                    <input required type="text" name="cpu" value="@Model.cpu" class="form-control" />
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <label class="form-label">GPU</label>
+                    <input required type="text" name="gpu" value="@Model.gpu" class="form-control" />
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <label class="form-label">Memory</label>
+                    <input required type="text" name="memory" value="@Model.memory" class="form-control" />
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <label class="form-label">Disk Size</label>
+                    <input required type="text" name="disk_size" value="@Model.disk_size" class="form-control" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Description</label>
+                    <textarea name="remark" class="form-control" rows="4" cols="50" placeholder="Enter a description..."></textarea>
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="card-footer d-flex flex-row gap-3">
+
+                <button type="submit" class="btn btn-primary-600 radius-8 px-20 py-11 d-flex align-items-center gap-2">
+                    <iconify-icon icon="iconamoon:arrow-down-5-circle-light" width="24" height="24"></iconify-icon>
+                    Save
+                </button>
+
+                <a href="@Url.Action("Index")"
+                   class="btn btn-outline-secondary radius-8 px-20 py-11 d-flex align-items-center gap-2">
+                    <iconify-icon icon="mdi:close-circle-outline" width="24" height="24"></iconify-icon>
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+</div>

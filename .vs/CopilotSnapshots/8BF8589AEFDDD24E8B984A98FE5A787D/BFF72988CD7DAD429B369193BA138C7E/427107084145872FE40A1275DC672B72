@@ -1,0 +1,10 @@
+﻿@using AssetControl.Models;
+@model ext26_assetcontrol_asset 
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+
+

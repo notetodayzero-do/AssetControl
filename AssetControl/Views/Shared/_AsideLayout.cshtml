@@ -1,0 +1,109 @@
+﻿
+
+@{
+    string currentControlle = ViewContext.RouteData.Values["controller"].ToString();
+
+}
+
+<aside class="sidebar">
+
+    <button type="button" class="sidebar-close-btn">
+        <iconify-icon icon="radix-icon:cross-2"></iconify-icon>
+    </button>
+
+    <div class="sidebar-menu-area open">
+
+        <ul class="sidebar-menu show">
+            <li class="sidebar-menu-group-title">List</li>
+
+            <li>
+                <a class="active-page" href="@Url.Action("Index","Asset")">
+                    <iconify-icon class="menu-icon" icon="icon-park-outline:computer" width="24" height="24"></iconify-icon>
+                    <span>Asset</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","ComputerSpec")">
+                    <iconify-icon class="menu-icon" icon="mingcute:edit-4-line" width="24" height="24"></iconify-icon>
+                    <span>Spac Computer</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Imge")">
+                    <iconify-icon class="menu-icon" icon="material-symbols:image-outline" width="24" height="24"></iconify-icon>
+                    <span>Image</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)">
+                    <iconify-icon class="menu-icon" icon="streamline-cyber:harddisk-4" width="24" height="24"></iconify-icon>
+                    <span>Hardware</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)">
+                    <iconify-icon class="menu-icon" icon="hugeicons:software" width="24" height="24"></iconify-icon>
+                    <span>Software</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="javascript:void(0)">
+                    <iconify-icon class="menu-icon " icon="iconoir:user-cart" width="24" height="24"></iconify-icon>
+                    <span>Borrow</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-group-title">Control User</li>
+            <li>
+                <a class="@(currentControlle == "Employee" ? "active-page" : "")" href="@Url.Action("Index","Employee")">
+                    <iconify-icon class="menu-icon" icon="clarity:employee-line" width="24" height="24"></iconify-icon>
+                    <span>Employee</span>
+                </a>
+                <a href="@Url.Action("Index","Department")">
+                    <iconify-icon class="menu-icon" icon="heroicons:user-group-16-solid" width="24" height="24"></iconify-icon>
+                    <span>Department</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-group-title">Control Brand</li>
+            <li>
+                <a href="@Url.Action("Index","Brand")">
+                    <iconify-icon class="menu-icon" icon="solar:archive-down-minimlistic-bold-duotone" width="24" height="24"></iconify-icon>
+                    <span>Brand</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-group-title">Tranfer</li>
+            <li>
+                <a href="@Url.Action("Index","Tranfer")">
+                    <iconify-icon class="menu-icon" icon="streamline-ultimate:cloud-data-transfer-bold" width="24" height="24"></iconify-icon>
+                    <span>Computers</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="sidebar-menu">
+            <li class="sidebar-menu-group-title">Role</li>
+            <li>
+                <a href="@Url.Action("Index","Role")">
+                    <iconify-icon class="menu-icon" icon="ic:outline-dns" width="24" height="24"></iconify-icon>
+
+                    <span>Role</span>
+                </a>
+            </li>
+        </ul>
+
+
+    </div>
+</aside>

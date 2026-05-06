@@ -1,0 +1,46 @@
+﻿@using AssetControl.Models;
+@model List<AssetControl.Entity.ext26_assetcontrol_computer_spec>
+@{
+    ViewBag.Title = "";
+}
+
+<h2>Index</h2>
+
+<div class="card basic-data-table">
+    <div class="card-header d-flex align-items-baseline justify-content-between">
+        <h5 class="card-title mb-0">Computer Spec</h5>
+        <a class="btn btn-primary" href="@Url.Action("Create", "ComputerSpec")">
+            Create
+        </a>
+    </div>
+    <div class="card-body">
+        <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+            <thead>
+                <tr>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Modem</th>
+                    <th scope="col">CPU</th>
+                    <th scope="col">GPU</th>
+                    <th scope="col">Memory</th>
+                    <th scope="col">Size_Disk</th>
+                    <th scope="col">OS</th>
+                    <th scope="col">Remark</th>
+                    <th scope="col">Create_Date</th>
+                    <th scope="col">Update_date</th>
+                    <th scope="col">cancel_by_user_id</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                
+
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#dataTable").DataTable();
+    </script>
+
+}

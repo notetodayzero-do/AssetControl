@@ -1,0 +1,29 @@
+﻿@using AssetControl.Models;
+@model ext26_assetcontrol_user_role
+@{
+    ViewBag.Title = "Create UserRole";
+}
+
+<h2>????????????????????</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("User")
+        @Html.DropDownListFor(m => m.id_user, (SelectList)ViewBag.Users, "-- Select User --", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Role")
+        @Html.DropDownListFor(m => m.id_role, (SelectList)ViewBag.Roles, "-- Select Role --", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

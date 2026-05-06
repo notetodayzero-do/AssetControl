@@ -1,0 +1,33 @@
+﻿@using AssetControl.Models;
+@model List<ext26_assetcontrol_role>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Role List</h2>
+
+
+
+<p>
+    @Html.ActionLink("Create New Role", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Role Name</th>
+        <th>Remark</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.role_name</td>
+            <td>@item.remark</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_role }, new { @class = "btn btn-warning btn-sm" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_role }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+</table>

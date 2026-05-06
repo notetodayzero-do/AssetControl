@@ -1,0 +1,91 @@
+﻿using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+using AssetControl.Models;
+using System.Data.Entity;
+
+namespace AssetControl.Controllers
+{
+    public class UserRoleController : Controller
+    {
+        private Models.EXT26_ASSETCONTROLEntities db = new Models.EXT26_ASSETCONTROLEntities();
+
+        public ActionResult Index()
+        {
+            var list = db.ext26_assetcontrol_user_role
+                .Include(ur => ur.ext26_assetcontrol_user)
+                .Include(ur => ur.ext26_assetcontrol_role)
+                .ToList();
+            return View(list);
+        }
+
+        public ActionResult Create()
+        {
+            ViewBag.Users = new SelectList(db.ext26_assetcontrol_user.Where(u => u.is_active).ToList(), "id_user", "username");
+            ViewBag.Roles = new SelectList(db.ext26_assetcontrol_role.ToList(), "id_role", "role_name");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ext26_assetcontrol_user_role userRole)
+        {
+            ViewBag.Users = new SelectList(db.ext26_assetcontrol_user.Where(u => u.is_active).ToList(), "id_user", "username", userRole.id_user);
+            ViewBag.Roles = new SelectList(db.ext26_assetcontrol_role.ToList(), "id_role", "role_name", userRole.id_role);
+
+            if (ModelState.IsValid)
+            {
+                var exists = db.ext26_assetcontrol_user_role.Any(x => x.id_user == userRole.id_user && x.id_role == userRole.id_role);
+                if (exists)
+                {
+                    ModelState.AddModelError("", "สิทธิ์นี้ถูกกำหนดให้ผู้ใช้นี้แล้ว");
+                    return View(userRole);
+                }
+
+                db.ext26_assetcontrol_user_role.Add(userRole);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(userRole);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var ur = db.ext26_assetcontrol_user_role
+                .Include(x => x.ext26_assetcontrol_user)
+                .Include(x => x.ext26_assetcontrol_role)
+                .FirstOrDefault(x => x.id_user_role == id);
+            if (ur == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ur);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var ur = db.ext26_assetcontrol_user_role.Find(id);
+            if (ur != null)
+            {
+                db.ext26_assetcontrol_user_role.Remove(ur);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

@@ -1,0 +1,6 @@
+Brand: LENOVO
+Model: C21CQS08G00
+CPU: AMD Ryzen 7 PRO 6850U
+GPU: Graphics
+Memory: 16GB
+Disk Size: 1TB

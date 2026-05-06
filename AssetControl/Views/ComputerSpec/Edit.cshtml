@@ -1,0 +1,57 @@
+@using AssetControl.Entity;
+@model ext26_assetcontrol_computer_spec
+
+@{
+    ViewBag.Title = "Edit Spec";
+}
+
+<h2>Edit Spec</h2>
+
+@using (Html.BeginForm("Edit", "ComputerSpec", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id_com_spec)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.brand)
+        @Html.TextBoxFor(m => m.brand, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.model)
+        @Html.TextBoxFor(m => m.model, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.cpu)
+        @Html.TextBoxFor(m => m.cpu, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.gpu)
+        @Html.TextBoxFor(m => m.gpu, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.memory)
+        @Html.TextBoxFor(m => m.memory, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.disk_size)
+        @Html.TextBoxFor(m => m.disk_size, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.os)
+        @Html.TextBoxFor(m => m.os, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.remark)
+        @Html.TextAreaFor(m => m.remark, 4, 50, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+}

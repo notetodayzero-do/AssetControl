@@ -1,0 +1,112 @@
+﻿@using AssetControl.Models;
+@model ext26_assetcontrol_computer_spec
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="dashboard-main-body">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="basic-data-table">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h3 mb-0">Create Spec</h1>
+                        <small class="text-muted">Add a new user to the system</small>
+                    </div>
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-outline-secondary" })
+                    </div>
+
+                </div>
+                @using (Html.BeginForm("Create","ComputerSpec", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="card-body row">
+                        <div class="col-4 mt-3">
+                            <label class="form-label">Brand</label>
+                            @Html.TextBoxFor(m => m.brand, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">Model</label>
+                            @Html.TextBoxFor(m => m.model, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">CPU</label>
+                            @Html.TextBoxFor(m => m.cpu, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">GPU</label>
+                            @Html.TextBoxFor(m => m.gpu, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">Memory</label>
+                            @Html.TextBoxFor(m => m.memory, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">Disk Size</label>
+                            @Html.TextBoxFor(m => m.disk_size, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-4 mt-3">
+                            <label class="form-label">OS</label>
+                            @Html.TextBoxFor(m => m.os, new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="card-body row">
+
+                        <div class="col-lg-4">
+                            <label class="form-label">Description</label>
+                            @Html.TextAreaFor(m => m.remark, 4, 50, new { @class = "form-control", placeholder = "Enter a description..." })
+                        </div>
+                    </div>
+
+                    <div class="card-body row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.create_date, "Created Date", new { @class = "form-label" })
+
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <iconify-icon class="menu-icon" icon="mdi:calendar-month" width="24" height="24"></iconify-icon>
+                                    </span>
+
+                                    @Html.TextBoxFor(m => m.create_date, "{0:yyyy-MM-ddTHH:mm}", new { type = "datetime-local", @class = "form-control" })
+
+                                </div>
+
+                                @Html.ValidationMessageFor(m => m.create_date, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="mt-4 d-flex gap-2">
+
+                            <button type="submit" class="btn btn-primary-600 radius-8 px-20 py-11 d-flex align-items-center gap-2">
+                                <iconify-icon icon="iconamoon:arrow-down-5-circle-light" width="24" height="24"></iconify-icon>
+                                Save
+                            </button>
+
+                            <a href="@Url.Action("Index")"
+                               class="btn btn-outline-secondary radius-8 px-20 py-11 d-flex align-items-center gap-2">
+                                <iconify-icon icon="mdi:close-circle-outline" width="24" height="24"></iconify-icon>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,33 @@
+@using AssetControl.Models;
+@model ext26_assetcontrol_role
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Role</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id_role)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.role_name)
+        @Html.TextBoxFor(m => m.role_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.role_name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.remark)
+        @Html.TextBoxFor(m => m.remark, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.remark)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

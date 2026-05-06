@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using AssetControl.Models;
+
+namespace AssetControl.Controllers
+{
+    public class RoleController : Controller
+    {
+        // GET: Role
+        Models.EXT26_ASSETCONTROLEntities db = new Models.EXT26_ASSETCONTROLEntities();
+        public ActionResult Index()
+        {
+            var roles = db.ext26_assetcontrol_user_role.ToList();
+            return View(roles);
+        }
+
+
+    }
+}

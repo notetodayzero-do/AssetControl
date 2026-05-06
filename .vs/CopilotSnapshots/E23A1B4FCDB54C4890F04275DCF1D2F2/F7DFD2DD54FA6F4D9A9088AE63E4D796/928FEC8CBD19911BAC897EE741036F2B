@@ -1,0 +1,127 @@
+﻿@using AssetControl.Entity;
+@using AssetControl.Models
+@model ext26_assetcontrol_computer_tran
+
+@{
+    ViewBag.Title = "Index";
+    ext26_assetcontrol_asset         assets = ViewBag.assets;
+    ext26_assetcontrol_computer_spec spec   = ViewBag.spec;
+    List<User> Users                        = ViewBag.Users;
+    List<DEPT> dEPTs                        = ViewBag.Depts;
+}
+
+
+@functions
+{
+}
+
+<h2>Index</h2>
+
+<div class="card">
+    <div class="card-header">
+        <b>????????? (DocID) : </b>
+    </div>
+
+    <div class="card-body">
+        <form action="@Url.Action("UpdateData", "Tranfer")" method="post">
+            <input type="hidden" name="id_asset" value="@Model.id_asset" />
+
+            <div class="row">
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">Asset Number</label>
+                    <input readonly disabled value="@assets?.asset_number" type="text" class="form-control" />
+                </div>
+                <div class="col-12 col-lg-3 mt-3">
+                    <label class="form-label">Serial Number</label>
+                    <input readonly disabled value="@assets?.serial_number" type="text" class="form-control" />
+                </div>
+                @if (spec != null)
+                {
+                    <div class="col-12 col-lg-3 mt-3">
+                        <label class="form-label">Brand / Model</label>
+                        <input readonly disabled value="@spec.brand @spec.model" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-lg-3 mt-3">
+                        <label class="form-label">CPU</label>
+                        <input readonly disabled value="@spec.cpu" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-lg-3 mt-3">
+                        <label class="form-label">RAM / HDD</label>
+                        <input readonly disabled value="@spec.memory / @spec.disk_size" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12 col-lg-3 mt-3">
+                        <label class="form-label">OS</label>
+                        <input readonly disabled value="@spec.os" type="text" class="form-control" />
+                    </div>
+                }
+            </div>
+
+
+            <div class="col-3 mt-3">
+                <label class="form-label">??????????????</label>
+                <select class="form-select" name="old_dept_id" disabled>
+                    <option value="">-- ?????????? --</option>
+                    @if (dEPTs != null && dEPTs.Count > 0)
+                    {
+                        foreach (var item in dEPTs)
+                        {
+                            // ??????????? assets.dept (DeptId ????????????) ??? item.DeptId
+                            if (assets.dept == item.DeptId)
+                            {
+                                // ??????????????? asset ? ???? selected
+                                <option selected value="@item.DeptId">@item.DeptName @item.FactoryId</option>
+                            }
+                            else
+                            {
+                                <option value="@item.DeptId">@item.DeptName @item.FactoryId</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-3 mt-4">
+                <label class="form-label">??????????</label>
+                <select class="form-select" name="department_to_id">
+                    <option value="">-- ??????????? --</option>
+                    @if (dEPTs != null && dEPTs.Count > 0)
+                    {
+                        foreach (var item in dEPTs)
+                        {
+                            <option value="@item.DeptId">@item.DeptName @item.FactoryId</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-3 mt-4">
+                <label class="form-label">???????</label>
+                <select class="form-select" name="">
+                    <option value="">-- ???????????? --</option>
+                    @if (Users != null && Users.Count > 0)
+                    {
+                        foreach (var item in Users)
+                        {
+                            <option value="@item.UID">@item.EmpID  @item.FName @item.LName</option>
+                        }
+                    }
+                </select>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6 mt-3">
+                    <label class="form-label">Comment</label>
+                    <textarea name="remark" class="form-control" rows="4" cols="50" placeholder="Enter a description..."></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 mt-3">
+                    <button type="submit" class="btn btn-primary">??????</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

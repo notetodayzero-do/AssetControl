@@ -1,0 +1,53 @@
+﻿using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.ModelBinding;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    public class ComputerSpecController : Controller
+    {
+        Models.EXT26_ASSETCONTROLEntities db = new Models.EXT26_ASSETCONTROLEntities();
+        // GET: Computer_Spec
+        public ActionResult Index()
+        {
+           List<ext26_assetcontrol_computer_spec> computer_spec = db.ext26_assetcontrol_computer_spec.ToList();
+            return View(computer_spec);
+        }
+
+        [HttpGet]
+        public ActionResult Create() 
+        {
+            ext26_assetcontrol_computer_spec model = new ext26_assetcontrol_computer_spec();
+            // Default วันที่และเวลาปัจจุบัน
+            model.create_date = DateTime.Now;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Create(ext26_assetcontrol_computer_spec model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    model.create_date = DateTime.Now;
+
+                    db.ext26_assetcontrol_computer_spec.Add(model);
+                    db.SaveChanges();
+
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+               
+            }
+            return RedirectToAction("index");
+        }
+    }
+}

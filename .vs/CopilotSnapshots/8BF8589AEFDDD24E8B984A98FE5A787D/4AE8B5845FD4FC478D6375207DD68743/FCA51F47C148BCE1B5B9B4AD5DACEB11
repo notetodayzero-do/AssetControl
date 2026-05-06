@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using AssetControl.Models;
+using System.Net;
+using System.Data.Entity;
+
+namespace AssetControl.Controllers
+{
+    public class RoleController : Controller
+    {
+        // GET: Role
+        Models.EXT26_ASSETCONTROLEntities db = new Models.EXT26_ASSETCONTROLEntities();
+        public ActionResult Index()
+        {
+            var roles = db.ext26_assetcontrol_role.ToList();
+            return View(roles);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ext26_assetcontrol_role role)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ext26_assetcontrol_role.Add(role);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(role);
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var role = db.ext26_assetcontrol_role.Find(id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ext26_assetcontrol_role role)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(role).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(role);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var role = db.ext26_assetcontrol_role.Find(id);
+            if (role == null)
+            {
+                return HttpNotFound();
+            }
+            return View(role);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var role = db.ext26_assetcontrol_role.Find(id);
+            if (role != null)
+            {
+                db.ext26_assetcontrol_role.Remove(role);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+
+    }
+}

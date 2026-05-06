@@ -1,0 +1,225 @@
+﻿using AssetControl.Entity;
+using AssetControl.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.IO;
+using System.Web.Mvc;
+
+namespace AssetControl.Controllers
+{
+    
+    public class AssetController : BaseController
+    {
+        Entity.EXT26_ASSETCONTROLEntities db = new Entity.EXT26_ASSETCONTROLEntities();
+        Entity.EXTEDIEntities edidb = new Entity.EXTEDIEntities();
+        Entity.EXT_APIEntities apidb = new Entity.EXT_APIEntities();
+
+        // หน้าแสดงรายการ Asset (GET)
+        public ActionResult Index()
+        {
+            // ดึงข้อมูล Asset ทั้งหมด แล้วส่งให้ view แสดงตาราง
+
+            
+
+
+            List<ext26_assetcontrol_asset> asset = db.ext26_assetcontrol_asset.ToList();
+            return View(asset);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            
+            ext26_assetcontrol_asset model = new ext26_assetcontrol_asset();
+
+            List<ext26_assetcontrol_computer_spec> com_spec = db.ext26_assetcontrol_computer_spec.ToList();
+
+            List<DEPT_CUSTOM> depts = edidb.DEPTs.Select( d => new DEPT_CUSTOM { 
+                DeptId = d.DeptId,
+                DepName = d.DeptName,
+                FactoryId = d.FactoryId
+            }).ToList();
+
+
+            List<USER_CUSTOM> Users = apidb.Users
+                .Where( u => 
+                !string.IsNullOrEmpty(u.FName ) && 
+                !string.IsNullOrEmpty(u.LName) &&
+                !string.IsNullOrEmpty(u.EmpID)
+                )
+                .Select( u => new USER_CUSTOM {
+                   UID = u.UID,
+                   EmpID = u.EmpID,
+                   FName = u.FName.ToUpper(),
+                   LName = u.LName.ToUpper(),
+               }).ToList();
+
+            ViewBag.Users = Users;
+            ViewBag.com_spec = com_spec;
+
+            // ตั้ง default status เป็น "พร้อมใช้งาน" (id_status = 1)
+            var defaultStatus = db.ext26_assetcontrol_status
+                .FirstOrDefault(s => s.status_name.Contains("พร้อม"));
+            model.id_status = defaultStatus != null ? defaultStatus.id_status : 1;
+
+            ViewBag.statuses = new SelectList(db.ext26_assetcontrol_status.ToList(), "id_status", "status_name", model.id_status);
+            ViewBag.depts = depts;
+            
+          
+            
+            return View(model);
+        }
+
+        // รับข้อมูลจาก Form (POST)
+        // - asset  : ข้อมูล Asset ที่ผูกจาก form fields (Model Binding)
+        // - photo  : ไฟล์รูปภาพที่ผู้ใช้เลือก (input name="photo", form ต้องมี enctype="multipart/form-data")
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ext26_assetcontrol_asset asset, HttpPostedFileBase photo)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    
+                    asset.create_date = DateTime.Now;
+                    var current = GetUser();
+
+                    if (current != null)
+                    {
+                        asset.create_by = current.UserName ?? current.EmpID;
+                    }
+                    // default status if not provided
+                    if (asset.id_status == 0)
+                    {
+                        asset.id_status = db.ext26_assetcontrol_status.OrderBy(s => s.id_status).FirstOrDefault()?.id_status ?? 1;
+                    }
+
+                    // ตรวจสอบ asset_number ซ้ำ
+                    bool isDuplicate = db.ext26_assetcontrol_asset
+                        .Any(a => a.asset_number == asset.asset_number);
+                    if (isDuplicate)
+                    {
+                        ModelState.AddModelError("asset_number", "Asset Number นี้มีอยู่ในระบบแล้ว");
+                        TempData["Error"] = "Asset Number \"" + asset.asset_number + "\" มีอยู่ในระบบแล้ว";                  
+                        return View(asset);
+                    }
+
+                    // ตรวจสอบ serial_number ซ้ำ
+                    bool isSerialDuplicate = db.ext26_assetcontrol_asset
+                        .Any(a => a.serial_number == asset.serial_number);
+                    if (isSerialDuplicate)
+                    {
+                        ModelState.AddModelError("serial_number", "Serial Number นี้มีอยู่ในระบบแล้ว");
+                        TempData["Error"] = "Serial Number \"" + asset.serial_number + "\" มีอยู่ในระบบแล้ว";
+                        return View(asset);
+                    }
+
+
+                    // save asset first to get id
+                    asset = db.ext26_assetcontrol_asset.Add(asset);
+                    db.SaveChanges();
+
+
+
+                    if (photo != null)
+                    {
+                        // กำหนด path โฟลเดอร์เก็บรูป → ~/App_Data/Assets/
+                        // ใช้ App_Data เพราะ browser ไม่สามารถเข้าถึงได้โดยตรง (ปลอดภัยกว่า ~/Content หรือ ~/Uploads)
+                        string pathupload = Path.Combine(Server.MapPath("~/App_Data"), "Assets");
+
+                        // สร้างโฟลเดอร์ถ้ายังไม่มี
+                        if (!Directory.Exists(pathupload))
+                        {
+                            Directory.CreateDirectory(pathupload);
+                        }
+
+                        // ตั้งชื่อไฟล์ใหม่ด้วย asset_number + นามสกุลเดิม เช่น AST-001.jpg
+                        // เพื่อป้องกันชื่อซ้ำ และ trace กลับหา asset ได้ง่าย
+                        string fileName = asset.asset_number + Path.GetExtension(photo.FileName);
+
+                        // บันทึกไฟล์รูปลง disk
+                        photo.SaveAs(Path.Combine(pathupload, fileName));
+
+                        // สร้าง record ใน table ext26_assetcontrol_asset_image
+                        // เพื่อเชื่อมรูปกับ asset ผ่าน id_asset
+                        ext26_assetcontrol_asset_image _image = new ext26_assetcontrol_asset_image();
+                        _image.id_asset   = asset.id_asset;                      // FK → asset ที่เพิ่งบันทึก
+                        _image.image_name = fileName;                            // ชื่อไฟล์ ใช้ใน GetImage action
+                        _image.image_path = Path.Combine(pathupload, fileName); // full path บน server
+
+                        db.ext26_assetcontrol_asset_image.Add(_image);
+                        db.SaveChanges();
+                    }
+
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                // เก็บข้อความข้อผิดพลาด
+                TempData["Error"] = ex.Message;
+            }
+
+            // reload dropdowns on error
+            ViewBag.com_spec = db.ext26_assetcontrol_computer_spec.ToList();
+            ViewBag.statuses = new SelectList(db.ext26_assetcontrol_status.ToList(), "id_status", "status_name", asset.id_status);
+            // คืนค่า view พร้อมข้อมูลเดิมเมื่อเกิด error
+            return View(asset);
+        }
+
+        // AJAX: ตรวจสอบ asset_number ซ้ำ
+        [HttpGet]
+        public JsonResult CheckAssetNumber(string assetNumber)
+        {
+            bool exists = !string.IsNullOrEmpty(assetNumber) &&
+                          db.ext26_assetcontrol_asset.Any(a => a.asset_number == assetNumber);
+            return Json(new { exists = exists }, JsonRequestBehavior.AllowGet);
+        }
+
+        // AJAX: ตรวจสอบ serial_number ซ้ำ
+        [HttpGet]
+        public JsonResult CheckSerialNumber(string serialNumber)
+        {
+            bool exists = !string.IsNullOrEmpty(serialNumber) &&
+                          db.ext26_assetcontrol_asset.Any(a => a.serial_number == serialNumber);
+            return Json(new { exists = exists }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Update()
+        {
+            return View();
+        }
+
+        // GetImage: ให้บริการดึงรูปภาพจาก App_Data/Assets มาแสดงบนหน้าเว็บ
+        // เนื่องจาก App_Data ถูก IIS ปิดกั้นไม่ให้ browser เข้าถึงโดยตรง
+        // จึงต้องผ่าน action นี้ อ่านไฟล์แล้วส่งกลับเป็น FileResult
+        // ใช้งานใน View: <img src="/Asset/GetImage?id=ชื่อไฟล์" />
+        public ActionResult GetImage(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return HttpNotFound();
+
+            var _path = Path.Combine(Server.MapPath("~/App_Data"), "Assets");
+            string pathFile = Path.Combine(_path, id);
+
+            // ถ้าไม่พบไฟล์บน disk คืน 404
+            if(!System.IO.File.Exists(pathFile))
+            {
+                return HttpNotFound();
+            }
+
+            // ระบุ Content-Type ให้ถูกต้องตามนามสกุลไฟล์ เช่น image/jpeg, image/png
+            string contentType = MimeMapping.GetMimeMapping(pathFile);
+
+            return File(pathFile, contentType);
+        }
+
+
+    }
+}
+
